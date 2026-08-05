@@ -37,7 +37,11 @@ async function searchSong() {
         const songs = await response.json();
 
         if (songs.length === 0) {
-            result.innerHTML = "<p>Lagu tidak ditemukan.</p>";
+            result.innerHTML = `
+<p class="text-center text-slate-500 dark:text-slate-400 py-5">
+    Lagu tidak ditemukan.
+</p>
+`;
             return;
         }
 
@@ -45,7 +49,7 @@ async function searchSong() {
 selectedSong = song;
 
 result.innerHTML = `
-<div class="border rounded-xl p-6">
+<div class="border border-slate-300 dark:border-slate-700 rounded-xl p-6">
 
     <h2 class="text-2xl font-bold text-slate-800 dark:text-white">
         ${song.trackName}
@@ -146,39 +150,142 @@ async function loadSongs() {
 
     songs.forEach(song => {
 
-        songList.innerHTML += `
-<div class="border rounded-xl p-5 mb-4 hover:shadow-lg transition">
+    songList.innerHTML += `
 
-    <div class="flex justify-between items-start">
+<div class="song-card border border-slate-300 dark:border-slate-700 rounded-xl p-5 mb-4 
+            hover:shadow-lg transition-all duration-300 cursor-pointer">
 
-        <div>
 
-            <h3 class="font-bold text-lg">
+    <div class="flex items-center justify-between gap-6">
+
+
+        <div class="text-3xl">
+            🎵
+        </div>
+
+
+        <div class="flex-1">
+
+            <h3 class="font-bold text-xl text-slate-800 dark:text-white">
                 ${song.track_name}
             </h3>
 
-            <p class="text-gray-600 dark:text-gray-300">
+
+            <p class="text-slate-600 dark:text-slate-300 mt-1">
                 ${song.artist_name}
             </p>
 
-            <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">
-                ${song.album_name}
+
+            <p class="text-sm text-slate-400 dark:text-slate-500 mt-2">
+                ${song.album_name || "-"}
             </p>
 
         </div>
 
-        <button
-    class="delete-btn bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded"
-    data-id="${song.id}">
-    🗑
-</button>
+
+        <div class="flex items-center gap-2">
+
+            <span class="expand-icon text-xl">
+                ▼
+            </span>
+
+
+            <button
+                class="delete-btn
+                bg-red-500
+                hover:bg-red-600
+                text-white
+                w-10
+                h-10
+                rounded-lg
+                transition"
+                data-id="${song.id}">
+
+                🗑
+
+            </button>
+
+        </div>
+
 
     </div>
 
+
+
+    <!-- EXPAND AREA -->
+
+    <div class="lyrics hidden mt-5 pt-4 border-t 
+                border-slate-200 dark:border-slate-700">
+
+
+        <h4 class="font-bold text-lg mb-3 text-slate-800 dark:text-white">
+            🎤 Lyrics
+        </h4>
+
+
+        <p class="
+            whitespace-pre-line
+            text-slate-600
+            dark:text-slate-300
+            leading-relaxed">
+
+            ${song.plain_lyrics || "Lyrics tidak tersedia"}
+
+        </p>
+
+
+    </div>
+
+
 </div>
+
 `;
 
+});
+document.querySelectorAll(".song-card").forEach(card => {
+
+    card.addEventListener("click", (e) => {
+
+
+        // jangan expand ketika klik tombol delete
+        if(e.target.closest(".delete-btn")){
+            return;
+        }
+
+
+        const lyrics = card.querySelector(".lyrics");
+        const icon = card.querySelector(".expand-icon");
+
+
+        lyrics.classList.toggle("hidden");
+
+
+        if(lyrics.classList.contains("hidden")){
+
+            icon.innerHTML = "▼";
+
+            card.classList.remove(
+                "bg-slate-100",
+                "dark:bg-slate-800"
+            );
+
+        } else {
+
+            icon.innerHTML = "▲";
+
+
+            card.classList.add(
+                "bg-slate-100",
+                "dark:bg-slate-800"
+            );
+
+        }
+
+
     });
+
+
+});
     document.querySelectorAll(".delete-btn").forEach(button => {
 
     button.addEventListener("click", () => {
@@ -234,7 +341,11 @@ if (localStorage.getItem("theme") === "dark") {
 // Saat tombol diklik
 themeToggle.addEventListener("click", () => {
 
+    console.log("Button clicked");
+
     document.documentElement.classList.toggle("dark");
+
+    console.log(document.documentElement.className);
 
     if (document.documentElement.classList.contains("dark")) {
 

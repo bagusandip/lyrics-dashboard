@@ -1,105 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <!-- <h1 class="text-4xl font-bold text-center text-blue-600 mt-10">
-    🎵 Lyrics Dashboard
-</h1> -->
-<title>Lyrics Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lyrics Dashboard</title>
+
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="css/output.css">
 </head>
 
 <body class="bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
 
-<div class="max-w-7xl mx-auto p-8">
+    <main class="max-w-7xl mx-auto p-8">
 
-    <div class="flex justify-between items-center mb-10">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-10">
 
-    <h1 class="text-4xl font-bold text-slate-800 dark:text-white">
-        🎵 Lyrics Dashboard
-    </h1>
+            <h1 class="text-4xl font-bold text-slate-800 dark:text-white">
+                🎵 Lyrics Dashboard
+            </h1>
 
-    <button
-        id="themeToggle"
-        class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700">
+            <button
+                type="button"
+                id="themeToggle"
+                class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
 
-        🌙 Dark Mode
+                🌙 Dark Mode
 
-    </button>
-
-</div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-        <!-- LEFT -->
-        <div class="lg:col-span-1">
-
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
-
-                <h2 class="text-xl font-semibold mb-5 text-slate-800 dark:text-white">
-    Search Song
-</h2>
-
-                <input
-                    id="track"
-                    placeholder="Track Name"
-                    class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
-
-                <input
-                    id="artist"
-                    placeholder="Artist Name"
-                    class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
-
-                <button
-                    id="searchBtn"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 transition">
-
-                    🔍 Cari Lagu
-
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
-        <!-- RIGHT -->
-        <div class="lg:col-span-2">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
+            <!-- Left Panel -->
+            <section class="lg:col-span-1">
 
-                <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
+                <div class="bg-white dark:bg-slate-800 transition-colors duration-300 rounded-xl shadow-lg p-6">
 
-                    Search Result
+                    <h2 class="text-xl font-semibold mb-5 text-slate-800 dark:text-white">
+                        Search Song
+                    </h2>
 
-                </h2>
+                    <label
+                        for="track"
+                        class="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">
 
-                <div id="result">
+                        Track Name
+
+                    </label>
+
+                    <input
+                        id="track"
+                        type="text"
+                        placeholder="Track Name"
+                        class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+
+                    <label
+                        for="artist"
+                        class="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+
+                        Artist Name
+
+                    </label>
+
+                    <input
+                        id="artist"
+                        type="text"
+                        placeholder="Artist Name"
+                        class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+
+                    <button
+                        type="button"
+                        id="searchBtn"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 transition disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                        🔍 Cari Lagu
+
+                    </button>
 
                 </div>
 
-            </div>
+            </section>
 
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
+            <!-- Right Panel -->
+            <section class="lg:col-span-2">
 
-                <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
+                <!-- Search Result -->
+                <div class="bg-white dark:bg-slate-800 transition-colors duration-300 rounded-xl shadow-lg p-6">
 
-                    My Collection
+                    <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
+                        Search Result
+                    </h2>
 
-                </h2>
+                    <div
+                        id="result"
+                        class="text-center text-slate-400 dark:text-slate-500 py-10">
 
-                <div id="songList">
+                        Cari lagu untuk melihat hasil.
+
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- Collection -->
+                <div class="bg-white dark:bg-slate-800 transition-colors duration-300 rounded-xl shadow-lg p-6 mt-6">
+
+                    <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
+                        My Collection
+                    </h2>
+
+                    <div
+                        id="songList"
+                        class="text-center text-slate-400 dark:text-slate-500 py-10">
+
+                        Belum ada lagu disimpan.
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
-    </div>
+    </main>
 
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
