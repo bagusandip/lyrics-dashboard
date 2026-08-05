@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <h1 class="text-4xl font-bold text-center text-blue-600 mt-10">
+    🎵 Lyrics Dashboard
+</h1>
+    <link rel="stylesheet" href="css/output.css">
+</head>
+
+<body class="bg-slate-100">
+
+<div class="max-w-7xl mx-auto p-8">
+
+    <h1 class="text-4xl font-bold text-center text-slate-800 mb-10">
+        🎵 Lyrics Dashboard
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- LEFT -->
+        <div class="lg:col-span-1">
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+
+                <h2 class="text-xl font-semibold mb-5">
+                    Search Song
+                </h2>
+
+                <input
+                    id="track"
+                    placeholder="Track Name"
+                    class="w-full border rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+
+                <input
+                    id="artist"
+                    placeholder="Artist Name"
+                    class="w-full border rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+
+                <button
+                    id="searchBtn"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 transition">
+
+                    🔍 Cari Lagu
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="lg:col-span-2">
+
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+
+                <h2 class="text-xl font-semibold mb-4">
+
+                    Search Result
+
+                </h2>
+
+                <div id="result">
+
+                </div>
+
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+
+                <h2 class="text-xl font-semibold mb-4">
+
+                    My Collection
+
+                </h2>
+
+                <div id="songList">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
