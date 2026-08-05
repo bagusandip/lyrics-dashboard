@@ -4,49 +4,59 @@ const btnSearch = document.getElementById("searchBtn");
 btnSearch.addEventListener("click", searchSong);
 
 async function searchSong() {
+
     const track = document.getElementById("track").value.trim();
     const artist = document.getElementById("artist").value.trim();
 
-    const response = await fetch(
-        `/songs/search?track=${encodeURIComponent(track)}&artist=${encodeURIComponent(artist)}`
-    );
-
-    const songs = await response.json();
-
-    const result = document.getElementById("result");
-
-result.innerHTML = `
-<div class="flex justify-center py-10">
-    <p class="text-gray-500">🔄 Mencari lagu...</p>
-</div>
-`;
-    
-
-    if (songs.length === 0) {
-        result.innerHTML = "<p>Lagu tidak ditemukan.</p>";
+    if (!track || !artist) {
+        Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Track dan Artist harus diisi."
+        });
         return;
     }
 
-    const song = songs[0];
-    selectedSong = song;
+    const result = document.getElementById("result");
+
+    btnSearch.disabled = true;
+    btnSearch.innerHTML = "Searching...";
 
     result.innerHTML = `
+    <div class="flex justify-center py-10">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+    </div>
+    `;
+
+    try {
+
+        const response = await fetch(
+            `/songs/search?track=${encodeURIComponent(track)}&artist=${encodeURIComponent(artist)}`
+        );
+
+        const songs = await response.json();
+
+        if (songs.length === 0) {
+            result.innerHTML = "<p>Lagu tidak ditemukan.</p>";
+            return;
+        }
+
+        const song = songs[0];
+selectedSong = song;
+
+result.innerHTML = `
 <div class="border rounded-xl p-6">
 
-    <h2 class="text-2xl font-bold">
+    <h2 class="text-2xl font-bold text-slate-800 dark:text-white">
         ${song.trackName}
     </h2>
 
-    <p class="text-gray-600 mt-2">
-
+    <p class="text-gray-600 dark:text-gray-300 mt-2">
         ${song.artistName}
-
     </p>
 
-    <p class="text-gray-400">
-
+    <p class="text-gray-400 dark:text-gray-500">
         ${song.albumName}
-
     </p>
 
     <button
@@ -60,10 +70,27 @@ result.innerHTML = `
 </div>
 `;
 
-    document
+document
     .getElementById("saveBtn")
     .addEventListener("click", saveSong);
-    console.log(song);
+
+    } catch (err) {
+
+        console.error(err);
+
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Gagal mengambil data lagu."
+        });
+
+    } finally {
+
+        btnSearch.disabled = false;
+        btnSearch.innerHTML = "🔍 Cari Lagu";
+
+    }
+
 }
 
 async function saveSong() {
@@ -130,23 +157,21 @@ async function loadSongs() {
                 ${song.track_name}
             </h3>
 
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-gray-300">
                 ${song.artist_name}
             </p>
 
-            <p class="text-sm text-gray-400 mt-2">
+            <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">
                 ${song.album_name}
             </p>
 
         </div>
 
         <button
-            onclick="deleteSong(${song.id})"
-            class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded">
-
-            🗑
-
-        </button>
+    class="delete-btn bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded"
+    data-id="${song.id}">
+    🗑
+</button>
 
     </div>
 
@@ -154,6 +179,15 @@ async function loadSongs() {
 `;
 
     });
+    document.querySelectorAll(".delete-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        deleteSong(button.dataset.id);
+
+    });
+
+});
 
 }
 
@@ -188,5 +222,32 @@ async function deleteSong(id) {
 
     loadSongs();
 }
+
+const themeToggle = document.getElementById("themeToggle");
+
+// Saat halaman dibuka
+if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+    themeToggle.innerHTML = "☀️ Light Mode";
+}
+
+// Saat tombol diklik
+themeToggle.addEventListener("click", () => {
+
+    document.documentElement.classList.toggle("dark");
+
+    if (document.documentElement.classList.contains("dark")) {
+
+        localStorage.setItem("theme", "dark");
+        themeToggle.innerHTML = "☀️ Light Mode";
+
+    } else {
+
+        localStorage.setItem("theme", "light");
+        themeToggle.innerHTML = "🌙 Dark Mode";
+
+    }
+
+});
 
 loadSongs();

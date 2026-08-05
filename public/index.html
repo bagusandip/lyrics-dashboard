@@ -2,40 +2,53 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <h1 class="text-4xl font-bold text-center text-blue-600 mt-10">
+    <!-- <h1 class="text-4xl font-bold text-center text-blue-600 mt-10">
     🎵 Lyrics Dashboard
-</h1>
+</h1> -->
+<title>Lyrics Dashboard</title>
     <link rel="stylesheet" href="css/output.css">
 </head>
 
-<body class="bg-slate-100">
+<body class="bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
 
 <div class="max-w-7xl mx-auto p-8">
 
-    <h1 class="text-4xl font-bold text-center text-slate-800 mb-10">
+    <div class="flex justify-between items-center mb-10">
+
+    <h1 class="text-4xl font-bold text-slate-800 dark:text-white">
         🎵 Lyrics Dashboard
     </h1>
+
+    <button
+        id="themeToggle"
+        class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700">
+
+        🌙 Dark Mode
+
+    </button>
+
+</div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
         <!-- LEFT -->
         <div class="lg:col-span-1">
 
-            <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
 
-                <h2 class="text-xl font-semibold mb-5">
-                    Search Song
-                </h2>
+                <h2 class="text-xl font-semibold mb-5 text-slate-800 dark:text-white">
+    Search Song
+</h2>
 
                 <input
                     id="track"
                     placeholder="Track Name"
-                    class="w-full border rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+                    class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
 
                 <input
                     id="artist"
                     placeholder="Artist Name"
-                    class="w-full border rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+                    class="w-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
 
                 <button
                     id="searchBtn"
@@ -52,9 +65,9 @@
         <!-- RIGHT -->
         <div class="lg:col-span-2">
 
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
 
-                <h2 class="text-xl font-semibold mb-4">
+                <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
 
                     Search Result
 
@@ -66,9 +79,9 @@
 
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6">
 
-                <h2 class="text-xl font-semibold mb-4">
+                <h2 class="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
 
                     My Collection
 
