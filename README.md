@@ -34,31 +34,20 @@ Project ini dibuat sebagai learning project untuk mempelajari integrasi REST API
 | SweetAlert2 | Notifications |
 | Git & GitHub | Version control |
 
-## 📌 Roadmap ##
- Search song from LRCLIB
- Save song to PostgreSQL
- Display saved songs
- Delete song
- Tailwind CSS UI
- Dark / Light mode
- Loading state
- Expand lyrics
- Pagination
+## 🎯 Learning Objectives
 
-## 🎯 Learning Objectives ##
+This project demonstrates practical implementation:
 
-This project demonstrates practical implementation of:
-
-REST API integration
-PostgreSQL database operations
-CRUD operations
-MVC architecture
-Pagination
-Async JavaScript
-Fetch API
-Responsive web design
-Tailwind CSS
-Git & GitHub workflow
+- REST API integration
+- PostgreSQL database operations
+- CRUD operations
+- MVC architecture
+- Pagination
+- Async JavaScript
+- Fetch API
+- Responsive web design
+- Tailwind CSS
+- Git & GitHub workflow
 
 ## 📂 Project Structure
 
