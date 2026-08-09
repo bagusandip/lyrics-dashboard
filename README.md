@@ -1,7 +1,6 @@
 # 🎵 Lyrics Dashboard
 
 Lyrics Dashboard adalah aplikasi web sederhana yang dibuat menggunakan Express.js, PostgreSQL, dan Tailwind CSS.
-
 Aplikasi ini terintegrasi dengan API LRCLIB untuk mencari data lagu dan lirik, kemudian menyimpannya ke database PostgreSQL.
 
 ## ✨ Features
