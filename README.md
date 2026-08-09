@@ -1,55 +1,84 @@
 # 🎵 Lyrics Dashboard
 
-Lyrics Dashboard adalah aplikasi web sederhana yang dibuat menggunakan Express.js, PostgreSQL, dan Tailwind CSS.
-Aplikasi ini terintegrasi dengan API LRCLIB untuk mencari data lagu dan lirik, kemudian menyimpannya ke database PostgreSQL.
+Lyrics Dashboard adalah aplikasi web untuk mencari, menyimpan, dan mengelola data lagu serta lirik.
+
+Aplikasi ini menggunakan **LRCLIB API** sebagai sumber data lagu dan lirik, kemudian menyimpan koleksi lagu ke **PostgreSQL**.
+
+Project ini dibuat sebagai learning project untuk mempelajari integrasi REST API, database, MVC architecture, dan responsive web UI.
 
 ## ✨ Features
 
-* Search song from LRCLIB API
-* Save song to PostgreSQL
-* Display saved songs
-* Delete saved songs
-* Responsive UI with Tailwind CSS
+- 🔍 Search song from LRCLIB API
+- 💾 Save song to PostgreSQL
+- 📚 Display saved songs
+- 🗑️ Delete saved songs
+- 📝 Display song lyrics
+- 📖 Expand / collapse lyrics
+- 📄 Pagination
+- 🌙 Dark / Light mode
+- 🔄 Loading state
+- 🔔 SweetAlert notifications
+- 📱 Responsive UI
+- 🎨 Tailwind CSS
 
 ## 🛠️ Tech Stack
 
-* Node.js
-* Express.js
-* PostgreSQL
-* Tailwind CSS
-* JavaScript (Vanilla)
+| Technology | Usage |
+|---|---|
+| Node.js | Runtime |
+| Express.js | Backend / REST API |
+| PostgreSQL | Database |
+| Tailwind CSS | Frontend styling |
+| JavaScript | Frontend logic |
+| LRCLIB API | Song and lyrics data |
+| SweetAlert2 | Notifications |
+| Git & GitHub | Version control |
 
-## 🚀 Installation
+## 📌 Roadmap ##
+ Search song from LRCLIB
+ Save song to PostgreSQL
+ Display saved songs
+ Delete song
+ Tailwind CSS UI
+ Dark / Light mode
+ Loading state
+ Expand lyrics
+ Pagination
 
-Clone repository:
+## 🎯 Learning Objectives ##
 
-```bash
-git clone https://github.com/bagusandip/lyrics-dashboard.git
-```
+This project demonstrates practical implementation of:
 
-Install dependencies:
+REST API integration
+PostgreSQL database operations
+CRUD operations
+MVC architecture
+Pagination
+Async JavaScript
+Fetch API
+Responsive web design
+Tailwind CSS
+Git & GitHub workflow
 
-```bash
-npm install
-```
-
-Open browser:
+## 📂 Project Structure
 
 ```text
-http://localhost:3000
-```
-
-## 📌 Roadmap
-
-* [x] Search song from LRCLIB
-* [x] Save song to PostgreSQL
-* [x] Delete song
-* [x] Tailwind CSS UI
-* [ ] Search collection
-* [ ] Pagination
-* [ ] Authentication
-* [ ] Dashboard statistics
-
-## 📄 License
-
-MIT License
+Dashboard1/
+├── controllers/
+│   └── songController.js
+├── models/
+│   └── songModel.js
+├── routes/
+│   └── songs.js
+├── public/
+│   ├── css/
+│   │   └── output.css
+│   ├── index.html
+│   ├── script.js
+│   └── favicon.ico
+├── db.js
+├── server.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
