@@ -1,16 +1,43 @@
 const axios = require("axios");
 const songModel = require("../models/songModel");
 
+// async function getSongs(req, res) {
+//     try {
+//         const songs = await songModel.getAllSongs();
+//         res.json(songs);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({
+//             message: "Database Error",
+//         });
+//     }
+// }
+
 async function getSongs(req, res) {
+
     try {
-        const songs = await songModel.getAllSongs();
-        res.json(songs);
+
+        const page = parseInt(req.query.page) || 1;
+
+        const limit = parseInt(req.query.limit) || 10;
+
+
+        const result =
+            await songModel.getSongsPaginated(page, limit);
+
+
+        res.json(result);
+
     } catch (err) {
+
         console.error(err);
+
         res.status(500).json({
             message: "Database Error",
         });
+
     }
+
 }
 
 async function searchSong(req, res) {
@@ -39,21 +66,44 @@ async function searchSong(req, res) {
 }
 
 async function saveSong(req, res) {
-    try {
-        const song = await songModel.insertSong(req.body);
 
-        res.status(201).json({
-            message: "Lagu berhasil disimpan",
-            data: song,
+    try {
+
+        const result = await songModel.insertSong(req.body);
+
+
+        if (result.duplicate) {
+
+            return res.status(409).json({
+
+                message: "Lagu sudah ada di My Collection."
+
+            });
+
+        }
+
+
+        res.json({
+
+            message: "Lagu berhasil disimpan.",
+
+            song: result.song
+
         });
 
+
     } catch (err) {
+
         console.error(err);
 
         res.status(500).json({
-            message: "Gagal menyimpan lagu",
+
+            message: "Database Error"
+
         });
+
     }
+
 }
 
 async function deleteSong(req, res) {
