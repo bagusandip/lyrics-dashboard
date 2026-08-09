@@ -34,22 +34,6 @@ Install dependencies:
 npm install
 ```
 
-Create `.env` file:
-
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_NAME=dashboard1
-```
-
-Run application:
-
-```bash
-npm run dev
-```
-
 Open browser:
 
 ```text
@@ -62,7 +46,6 @@ http://localhost:3000
 * [x] Save song to PostgreSQL
 * [x] Delete song
 * [x] Tailwind CSS UI
-* [ ] Update song
 * [ ] Search collection
 * [ ] Pagination
 * [ ] Authentication
